@@ -7,11 +7,11 @@ import BackDebitCardComponent from "./Components/backDebitCardComponent";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <MainComponent />
       <FrontDebitCardComponent />
       <BackDebitCardComponent />
-    </div>
+    </>
   );
 }
 

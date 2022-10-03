@@ -1,19 +1,15 @@
 .mainCard {
-  width: 260px;
+  width: 280px;
   height: 180px;
   position: absolute;
   transform: translate(-35%, -15%);
-  top: 23%;
+  top: 28%;
   left: 32%;
   color: hsl(0, 0%, 100%);
-  background: linear-gradient(
-    to top right,
-    hsl(249, 99%, 64%) 25%,
-    hsl(278, 94%, 30%) 45%,
-    hsl(0, 100%, 66%) 95%
-  );
+  background-image: url("../images/bg-card-front.png");
   border-radius: 8px;
   padding: 20px;
+  z-index: 6;
 }
 
 .circles {
@@ -53,5 +49,4 @@
   font-size: 10px;
   letter-spacing: 1px;
   color: hsl(270, 3%, 87%);
-  /* font-weight: 400; */
 }
