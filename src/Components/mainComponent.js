@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./mainComponent.css";
 
 const MainComponent = () => {
+  const [game, setGame] = useState("");
+  const handler = (e) => {
+    setGame(e.target.value);
+  };
+  console.log({ game });
   return (
     <>
       <div className="whole-container">
@@ -13,7 +18,9 @@ const MainComponent = () => {
               type="text"
               name="name"
               id=""
-              placeholder="e.g. Jane Appleseed"
+              placeholder="e.g. Jane Apleaseed"
+              onInput={handler}
+              value={game}
             />
           </div>
 
