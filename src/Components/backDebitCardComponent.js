@@ -5,8 +5,9 @@ const BackDebitCardComponent = () => {
   return (
     <>
       <main className="mainBackCard">
-        {/* <div className="black-section"></div> */}
-        <div className="cvc-section">000</div>
+        <div className="cvc-section">
+          <p>000</p>
+        </div>
       </main>
     </>
   );
