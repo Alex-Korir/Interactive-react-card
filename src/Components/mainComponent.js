@@ -2,19 +2,7 @@ import React, { useState } from "react";
 import "./mainComponent.css";
 
 const MainComponent = () => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-  const [cvc, setCvc] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const detail = { name, number, month, year, cvc };
-
-    console.log(detail);
-  };
-
+  const [name, number, month, year, cvc, setName, setNumber, setMonth, setYear, setCvc] = props
   return (
     <>
       <div className="whole-container">
@@ -87,7 +75,7 @@ const MainComponent = () => {
                 />
               </div>
             </div>
-            <button className="btn">Confirm</button>
+            <button className="btn" onClick={handleOutput}>Confirm</button>
           </form>
         </div>
       </div>
