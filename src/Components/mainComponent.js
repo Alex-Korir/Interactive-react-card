@@ -1,8 +1,30 @@
 import React, { useState } from "react";
 import "./mainComponent.css";
 
-const MainComponent = () => {
-  const [name, number, month, year, cvc, setName, setNumber, setMonth, setYear, setCvc] = props
+const MainComponent = (props) => {
+  const [inputs, setInputs] = useState({
+    name: "",
+    number: "",
+    month: "",
+    year: "",
+    cvc: "",
+  });
+  // const [number, setNumber] = useState("");
+  // const [month, setMonth] = useState("");
+  // const [year, setYear] = useState("");
+  // const [cvc, setCvc] = useState("");
+
+  const handleChange = (ev) => {
+    setInputs({ ...inputs, [ev.target.name]: ev.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //const detail = { name, number, month, year, cvc };
+
+    //console.log(detail);
+    //alert(`The name you entered was ${inputs.name}`);
+    console.log(inputs);
+  };
   return (
     <>
       <div className="whole-container">
@@ -17,10 +39,8 @@ const MainComponent = () => {
                 name="name"
                 id=""
                 placeholder="e.g. Jane Apleaseed"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                value={inputs.name || ""}
+                onChange={handleChange}
               />
             </div>
 
@@ -30,10 +50,8 @@ const MainComponent = () => {
                 type="text"
                 name="number"
                 placeholder="e.g. 1234 5678 9123 0000"
-                value={number}
-                onChange={(e) => {
-                  setNumber(e.target.value);
-                }}
+                value={inputs.number || ""}
+                onChange={handleChange}
               />
             </div>
             <div className="user-card-heading user-card-date">
@@ -45,20 +63,16 @@ const MainComponent = () => {
                     name="number"
                     placeholder="MM"
                     className="date-input"
-                    value={month}
-                    onChange={(e) => {
-                      setMonth(e.target.value);
-                    }}
+                    value={inputs.month || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="text"
                     name="number"
                     placeholder="YY"
                     className="date-input"
-                    value={year}
-                    onChange={(e) => {
-                      setYear(e.target.value);
-                    }}
+                    value={inputs.year || ""}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -68,14 +82,14 @@ const MainComponent = () => {
                   type="text"
                   name="number"
                   placeholder="e.g. 123"
-                  value={cvc}
-                  onChange={(e) => {
-                    setCvc(e.target.value);
-                  }}
+                  value={inputs.cvc || ""}
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            <button className="btn" onClick={handleOutput}>Confirm</button>
+            <button className="btn" input="submit">
+              Confirm
+            </button>
           </form>
         </div>
       </div>
