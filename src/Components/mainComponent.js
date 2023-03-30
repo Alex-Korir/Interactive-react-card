@@ -1,29 +1,35 @@
 import React, { useState } from "react";
+import FrontDebitCardComponent from "./frontDebitCardComponent";
 import "./mainComponent.css";
 
-const MainComponent = (props) => {
-  const [inputs, setInputs] = useState({
-    name: "",
-    number: "",
-    month: "",
-    year: "",
-    cvc: "",
-  });
-  // const [number, setNumber] = useState("");
-  // const [month, setMonth] = useState("");
-  // const [year, setYear] = useState("");
-  // const [cvc, setCvc] = useState("");
+const MainComponent = () => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [items, setItems] = useState([]);
 
-  const handleChange = (ev) => {
-    setInputs({ ...inputs, [ev.target.name]: ev.target.value });
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //const detail = { name, number, month, year, cvc };
-
-    //console.log(detail);
-    //alert(`The name you entered was ${inputs.name}`);
-    console.log(inputs);
+    if(name && year && month && cvc && number){
+      const person = {name:name, year:year, month: month, cvc: cvc, number: number};
+      console.log(person);
+      setItems((items)=> {
+        return(
+          [...items, person]
+        )
+      })
+      setName("");
+      setCvc("");
+      setYear("");
+      setMonth("");
+      setNumber("");
+    }
+    else{
+      console.log("empty values");
+    }
   };
   return (
     <>
@@ -39,8 +45,8 @@ const MainComponent = (props) => {
                 name="name"
                 id=""
                 placeholder="e.g. Jane Apleaseed"
-                value={inputs.name || ""}
-                onChange={handleChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -50,8 +56,8 @@ const MainComponent = (props) => {
                 type="text"
                 name="number"
                 placeholder="e.g. 1234 5678 9123 0000"
-                value={inputs.number || ""}
-                onChange={handleChange}
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
               />
             </div>
             <div className="user-card-heading user-card-date">
@@ -60,19 +66,19 @@ const MainComponent = (props) => {
                 <div className="card-input-month-year">
                   <input
                     type="text"
-                    name="number"
+                    name="month"
                     placeholder="MM"
                     className="date-input"
-                    value={inputs.month || ""}
-                    onChange={handleChange}
+                    value={month}
+                    onChange={(e) => setMonth(e.target.value)}
                   />
                   <input
                     type="text"
-                    name="number"
+                    name="year"
                     placeholder="YY"
                     className="date-input"
-                    value={inputs.year || ""}
-                    onChange={handleChange}
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
                   />
                 </div>
               </div>
@@ -80,10 +86,10 @@ const MainComponent = (props) => {
                 <p className="card-desc-tags">CVC</p>
                 <input
                   type="text"
-                  name="number"
+                  name="cvc"
                   placeholder="e.g. 123"
-                  value={inputs.cvc || ""}
-                  onChange={handleChange}
+                  value={cvc}
+                  onChange={(e) => setCvc(e.target.value)}
                 />
               </div>
             </div>
@@ -93,6 +99,7 @@ const MainComponent = (props) => {
           </form>
         </div>
       </div>
+      <FrontDebitCardComponent items={items}/>
     </>
   );
 };
