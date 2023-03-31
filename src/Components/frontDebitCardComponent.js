@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./frontDebitCardComponent.css";
 
-const FrontDebitCardComponent = (props) => {
-
+const FrontDebitCardComponent = ({items}) => {
+  console.log(items.number);
   return (
     <>
       <div className="mainCard">
@@ -10,33 +10,12 @@ const FrontDebitCardComponent = (props) => {
           <div className="bigCircle"></div>
           <div className="smallCircle"></div>
         </div>
-        {
-          props.items.map((item)=>{
-            const {id, name, month, year, number} = item;
-            console.log(item);
-            return(
-              <div>
-                 <p className="card-number" placeholder="000000000000">{number}</p>
-                 <div className="name-and-date">
-                  <p className="name">{name}</p>
-                  <p className="date">{month}/{year}</p>
-                </div>
-              </div>
-            )
-          })
-        }
-      </div>
-      {/* <div className="mainCard">
-        <div className="circles">
-          <div className="bigCircle"></div>
-          <div className="smallCircle"></div>
-        </div>
-        <p className="card-number"></p>
+        <p className="card-number">{"0000 0000 0000 0000" && items.number}</p>
         <div className="name-and-date">
-          <p className="name">{name}</p>
+          <p className="name">Alex Kipkorir</p>
           <p className="date"></p>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };

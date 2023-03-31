@@ -8,6 +8,7 @@ const MainComponent = () => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [cvc, setCvc] = useState("");
+  const [btn, setBtn] = useState("Confirm");
   const [items, setItems] = useState([]);
 
 
@@ -15,7 +16,6 @@ const MainComponent = () => {
     e.preventDefault();
     if(name && year && month && cvc && number){
       const person = {name:name, year:year, month: month, cvc: cvc, number: number};
-      console.log(person);
       setItems((items)=> {
         return(
           [...items, person]
@@ -31,6 +31,10 @@ const MainComponent = () => {
       console.log("empty values");
     }
   };
+
+  const handleLot = () => {
+    setBtn("Continue");
+  }
   return (
     <>
       <div className="whole-container">
@@ -93,8 +97,8 @@ const MainComponent = () => {
                 />
               </div>
             </div>
-            <button className="btn" input="submit">
-              Confirm
+            <button className="btn" input="submit" onClick={handleLot}>
+              {btn}
             </button>
           </form>
         </div>
