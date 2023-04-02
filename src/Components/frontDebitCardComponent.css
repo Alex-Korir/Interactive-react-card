@@ -21,8 +21,8 @@
 }
 
 .bigCircle {
-  width: 25px;
-  height: 25px;
+  width: 27px;
+  height: 27px;
   background-color: hsl(0, 0%, 100%);
   border-radius: 50%;
   /* margin-bottom: 50px; */
@@ -37,7 +37,7 @@
 }
 
 .card-number {
-  font-size: 15px;
+  font-size: 17px;
   letter-spacing: 2px;
   margin-bottom: 20px;
   width: 100%;
@@ -46,7 +46,7 @@
 .name-and-date {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 1px;
   color: hsl(270, 3%, 87%);
 }

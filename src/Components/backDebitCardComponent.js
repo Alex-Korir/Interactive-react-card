@@ -1,12 +1,12 @@
 import React from "react";
 import "./backDebitCardComponent.css";
 
-const BackDebitCardComponent = () => {
+const BackDebitCardComponent = ({cvc}) => {
   return (
     <>
       <main className="mainBackCard">
         <div className="cvc-section">
-          <p>000</p>
+          <p>{cvc}</p>
         </div>
       </main>
     </>
