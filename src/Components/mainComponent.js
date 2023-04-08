@@ -9,12 +9,22 @@ const MainComponent = () => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [cvc, setCvc] = useState("");
-  const [btn, setBtn] = useState("Confirm");
   // const [items, setItems] = useState([]);
+  const [error, setError] = useState({});
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validateForm(name,number,cvc);
+    if(Object.keys(validationErrors).length === 0){
+      console.log("Form is not valid");
+
+      // setName("");
+      setError({});
+    }
+    else{
+      setError(validationErrors);
+    }
     // if(name && year && month && cvc && number){
     //   const person = {name:name, year:year, month: month, cvc: cvc, number: number};
     //   setItems((items)=> {
@@ -29,13 +39,40 @@ const MainComponent = () => {
     //   setNumber("");
     // }
     // else{
-    //   console.log("empty values");
+    //   console.log("Empty values");
     // }
   };
 
-  const handleLot = () => {
-    setBtn("Continue");
+  const handleOnchangeNumber = (e, value) => {
+    setNumber(e.target.value);
+    if(!/^\d*$/.test(value)){
+      setError({...error, number: "Wrong Format, numbers only"});
+    }
+    else{
+      setError({...error, number: ""});
+    }
   }
+  
+  const validateForm = (name, number, cvc) => {
+    let errors = {};
+    if(!name){
+      errors.name = "Cannot be blank"
+    }
+    if(!number){
+      errors.number = "Cannot be blank"
+    }else if(!/^\d*$/.test(number)){
+      errors.number = "Wrong format, numbers only"
+    }
+    if(!cvc){
+      errors.cvc = "Cannot be blank"
+    }
+    if(!cvc){
+      errors.month = "Cannot be blank"
+    }
+
+    return errors;
+  }
+ 
   return (
     <>
       <div className="whole-container">
@@ -46,13 +83,12 @@ const MainComponent = () => {
               <p className="card-desc-tags">CARDHOLDER NAME</p>
               <input
                 type="text"
-                required
                 name="name"
-                id=""
                 placeholder="e.g. Jane Apleaseed"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+              {error.name && <p className="errorMsg">{error.name}</p>}
             </div>
 
             <div className="user-card-heading">
@@ -62,11 +98,13 @@ const MainComponent = () => {
                 name="number"
                 placeholder="e.g. 1234 5678 9123 0000"
                 maxLength={19}
-                value={number .replace(/\s/g, "")
+                value={number.replace(/\s/g, "")
                     .replace(/(\d{4})/g, "$1 ")
                     .trim()}
-                onChange={(e) => setNumber(e.target.value)}
+                // pattern="[0-9]*"
+                onChange={handleOnchangeNumber}
               />
+              {error.number && <p className="errorMsg">{error.number}</p>}
             </div>
             <div className="user-card-heading user-card-date">
               <div className="card-date-input">
@@ -79,7 +117,6 @@ const MainComponent = () => {
                     className="date-input"
                     value={month}
                     onChange={(e) => setMonth(e.target.value)}
-
                   />
                   <input
                     type="text"
@@ -90,6 +127,7 @@ const MainComponent = () => {
                     onChange={(e) => setYear(e.target.value)}
                   />
                 </div>
+                {error.month && <p className="errorMsg">{error.month}</p>}
               </div>
               <div className="user-card-cvc">
                 <p className="card-desc-tags">CVC</p>
@@ -101,11 +139,10 @@ const MainComponent = () => {
                   maxLength={3}
                   onChange={(e) => setCvc(e.target.value)}
                 />
+                {error.cvc && <p className="errorMsg">{error.cvc}</p>}
               </div>
             </div>
-            <button className="btn" input="submit" onClick={handleLot}>
-              {btn}
-            </button>
+            <button className="btn" input="submit">Confirm</button>
           </form>
         </div>
       </div>

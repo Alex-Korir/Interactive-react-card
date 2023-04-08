@@ -39,7 +39,7 @@
 input::placeholder {
   font-weight: bolder;
   color: hsl(270, 3%, 87%);
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .user-card-date {
@@ -48,6 +48,9 @@ input::placeholder {
 
 .card-input-month-year {
   display: flex;
+}
+.card-input-month-year .date-input{
+  float: left;
 }
 
 .card-date-input,
@@ -67,6 +70,11 @@ input::placeholder {
   color: hsl(0, 0%, 100%);
   background-color: hsl(278, 68%, 11%);
   letter-spacing: 1.5px;
+}
+.errorMsg{
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 @media screen and (min-width: 1024px) {
