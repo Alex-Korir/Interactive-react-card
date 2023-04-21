@@ -1,0 +1,38 @@
+.thankYouContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+img{
+    margin-bottom: 2rem;
+}
+.thankYouContainer h1{
+    font-size: 30px;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    color: hsl(278, 68%, 11%);
+}
+.thankYouContainer button{
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(278, 68%, 11%);
+    letter-spacing: 1.5px;
+    border: none;
+    outline: none;
+}
+.thankYouContainer p{
+    margin-bottom: 1.5rem;
+    color: hsl(279, 6%, 55%);
+}
+
+@media screen and (min-width: 1024px) {
+.thankYouContainer button {
+    width: 375px;
+    margin-bottom: 35px;
+  }
+}
