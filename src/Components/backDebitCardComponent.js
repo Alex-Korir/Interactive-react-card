@@ -1,7 +1,8 @@
 import React from "react";
 import "./backDebitCardComponent.css";
 
-const BackDebitCardComponent = ({cvc}) => {
+const BackDebitCardComponent = (props) => {
+  const {cvc} = props.pValue;
   return (
     <>
       <main className="mainBackCard">

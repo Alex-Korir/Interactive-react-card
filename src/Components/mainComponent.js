@@ -3,6 +3,7 @@ import BackDebitCardComponent from "./backDebitCardComponent";
 import FrontDebitCardComponent from "./frontDebitCardComponent";
 import "./mainComponent.css";
 import ThankYou from "./thankYou";
+// import { calculateewValue } from "@testing-library/user-event/dist/utils";
 
 const MainComponent = () => {
   const [name, setName] = useState("");
@@ -13,6 +14,14 @@ const MainComponent = () => {
   // const [items, setItems] = useState([]);
   const [error, setError] = useState({});
   const [submitted, setSubmitted] = useState(false);
+
+  const [pValue, setPValue] = useState({
+    number: "0000 0000 0000 0000",
+    name: "Jane Appleased",
+    year: "00",
+    month: "00",
+    cvc: "000"
+  });
 
 
   const handleSubmit = (e) => {
@@ -69,6 +78,56 @@ const MainComponent = () => {
 
     return errors;
   }
+
+  const handleNumber = (e) => {
+    const newValue = e.target.value;
+    setNumber(newValue);
+    console.log(newValue);
+
+    if(newValue){
+      setPValue({...pValue, number: newValue})
+    }
+  }
+
+  const handleName = (e) => {
+    const newValue = e.target.value;
+    setName(newValue);
+    console.log(newValue);
+
+    if(newValue){
+      setPValue({...pValue, name: newValue})
+    }
+  }
+
+  const handleMonth = (e) => {
+    const newValue = e.target.value;
+    setMonth(newValue);
+    console.log(newValue);
+
+    if(newValue){
+      setPValue({...pValue, month: newValue})
+    }
+  }
+
+  const handleYear = (e) => {
+    const newValue = e.target.value;
+    setYear(newValue);
+    console.log(newValue);
+
+    if(newValue){
+      setPValue({...pValue, year: newValue})
+    }
+  }
+
+  const handleCvc = (e) => {
+    const newValue = e.target.value;
+    setCvc(newValue);
+    console.log(newValue);
+
+    if(newValue){
+      setPValue({...pValue, cvc: newValue})
+    }
+  }
  
   return (
     <>
@@ -84,7 +143,7 @@ const MainComponent = () => {
                   name="name"
                   placeholder="e.g. Jane Apleaseed"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleName}
                 />
                 {error.name && <p className="errorMsg">{error.name}</p>}
               </div>
@@ -100,7 +159,7 @@ const MainComponent = () => {
                       .replace(/(\d{4})/g, "$1 ")
                       .trim()}
                   // pattern="[0-9]*"
-                  onChange={(e) => setNumber(e.target.value)}
+                  onChange={handleNumber}
                 />
                 {error.number && <p className="errorMsg">{error.number}</p>}
               </div>
@@ -115,7 +174,7 @@ const MainComponent = () => {
                       className="date-input"
                       maxLength={2}
                       value={month}
-                      onChange={(e) => setMonth(e.target.value)}
+                      onChange={handleMonth}
                     />
                     <input
                       type="text"
@@ -124,7 +183,7 @@ const MainComponent = () => {
                       className="date-input"
                       maxLength={4}
                       value={year}
-                      onChange={(e) => setYear(e.target.value)}
+                      onChange={handleYear}
                     />
                   </div>
                   {error.month && <p className="errorMsg">{error.month}</p>}
@@ -137,7 +196,7 @@ const MainComponent = () => {
                     placeholder="e.g. 123"
                     value={cvc}
                     maxLength={3}
-                    onChange={(e) => setCvc(e.target.value)}
+                    onChange={handleCvc}
                   />
                   {error.cvc && <p className="errorMsg">{error.cvc}</p>}
                 </div>
@@ -149,8 +208,8 @@ const MainComponent = () => {
           )}  
         </div>
       </div>
-      <FrontDebitCardComponent name={name} number={number} month={month} year={year}/>
-      <BackDebitCardComponent cvc={cvc}/>
+      <FrontDebitCardComponent name={name} pValue={pValue} month={month} year={year}/>
+      <BackDebitCardComponent cvc={cvc} pValue={pValue}/>
     </>
   );
 };
